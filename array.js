@@ -27,5 +27,9 @@ function concat(targetArray) {
 	return result;
 }
 
+function entries(targetArray) {
+	// 
+}
+
 
 export { at, concat };
