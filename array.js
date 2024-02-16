@@ -28,8 +28,15 @@ function concat(targetArray) {
 }
 
 function entries(targetArray) {
-	// 
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	const result = [];
+	for (let i=0; i<targetArray.length; i++) {
+		result.push([ i, targetArray[i] ]);
+	}
+	return result;
 }
 
 
-export { at, concat };
+export { at, concat, entries };
