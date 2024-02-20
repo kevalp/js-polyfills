@@ -27,5 +27,30 @@ function concat(targetArray) {
 	return result;
 }
 
+function entries(targetArray) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	const result = [];
+	for (let i=0; i<targetArray.length; i++) {
+		result.push([ i, targetArray[i] ]);
+	}
+	return result;
+}
 
-export { at, concat };
+function every(targetArray, fn) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!fn || typeof fn !== 'function') {
+		throw new Error('Second argument needs to be a Function');
+	}
+	if (!targetArray.length) { return true; }
+	for (let i=0; i<targetArray.length; i++) {
+		let result = fn(targetArray[i], i, targetArray);
+		if (!result) { return false; }
+	}
+	return true;
+}
+
+export { at, concat, entries, every };
