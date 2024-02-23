@@ -38,16 +38,16 @@ function entries(targetArray) {
 	return result;
 }
 
-function every(targetArray, fn) {
+function every(targetArray, callbackFunction) {
 	if (!targetArray || !Array.isArray(targetArray)) {
 		throw new Error('First argument needs to be an Array');
 	}
-	if (!fn || typeof fn !== 'function') {
+	if (!callbackFunction || typeof callbackFunction !== 'function') {
 		throw new Error('Second argument needs to be a Function');
 	}
 	if (!targetArray.length) { return true; }
 	for (let i=0; i<targetArray.length; i++) {
-		let result = fn(targetArray[i], i, targetArray);
+		let result = callbackFunction(targetArray[i], i, targetArray);
 		if (!result) { return false; }
 	}
 	return true;
