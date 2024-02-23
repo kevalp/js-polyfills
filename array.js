@@ -69,4 +69,22 @@ function fill(targetArray, fillValue, startIndex, stopIndex) {
 	return result;
 }
 
-export { at, concat, entries, every, fill };
+function filter(targetArray, filterFunction) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!filterFunction || typeof filterFunction !== 'function') {
+		throw new Error('Second arguments must be a function');
+	}
+	const result = [];
+	for (let i=0; i<targetArray.length; i++) {
+		const filterTest = filterFunction(targetArray[i], i, targetArray);
+		if (filterTest) {
+			result.push(targetArray[i]);
+		}
+	}
+	return result;
+}
+
+
+export { at, concat, entries, every, fill, filter };
