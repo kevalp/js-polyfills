@@ -86,5 +86,68 @@ function filter(targetArray, filterFunction) {
 	return result;
 }
 
+function find(targetArray, finderFunction) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!finderFunction || typeof finderFunction !== 'function') {
+		throw new Error('Second arguments must be a function');
+	}
+	for (let i=0; i<targetArray.length; i++) {
+		const findTest = finderFunction(targetArray[i], i, targetArray);
+		if (findTest) {
+			return targetArray[i];
+		}
+	}
+	return undefined;
+}
 
-export { at, concat, entries, every, fill, filter };
+function findIndex(targetArray, finderFunction) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!finderFunction || typeof finderFunction !== 'function') {
+		throw new Error('Second arguments must be a function');
+	}
+	for (let i=0; i<targetArray.length; i++) {
+		const findTest = finderFunction(targetArray[i], i, targetArray);
+		if (findTest) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+function findLast(targetArray, finderFunction) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!finderFunction || typeof finderFunction !== 'function') {
+		throw new Error('Second arguments must be a function');
+	}
+	for (let i=targetArray.length-1; i>=0; i--) {
+		const findTest = finderFunction(targetArray[i], i, targetArray);
+		if (findTest) {
+			return targetArray[i];
+		}
+	}
+	return -1;
+}
+
+function findLastIndex(targetArray, finderFunction) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (!finderFunction || typeof finderFunction !== 'function') {
+		throw new Error('Second arguments must be a function');
+	}
+	for (let i=targetArray.length-1; i>=0; i--) {
+		const findTest = finderFunction(targetArray[i], i, targetArray);
+		if (findTest) {
+			return i;
+		}
+	}
+	return -1;
+}
+
+export { at, concat, entries, every, fill, filter, find, findIndex, findLast, findLastIndex };
