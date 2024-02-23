@@ -12,7 +12,7 @@ function concat(targetArray) {
 	if (!targetArray || !Array.isArray(targetArray)) {
 		throw new Error('First argument needs to be an array');
 	}
-	const result = [...targetArray];	
+	const result = structuredClone(targetArray);
 	for (let i=1; i<arguments.length; i++) {
 		const item = arguments[i];
 		if (typeof item[Symbol.iterator] === 'function' && typeof item !== 'string') {
@@ -53,4 +53,20 @@ function every(targetArray, fn) {
 	return true;
 }
 
-export { at, concat, entries, every };
+function fill(targetArray, fillValue, startIndex, stopIndex) {
+	if (!targetArray || !Array.isArray(targetArray)) {
+		throw new Error('First argument needs to be an Array');
+	}
+	if (typeof fillValue === 'undefined') {
+		throw new Error('Second arguments must have the value to be filled');
+	}
+	const result = structuredClone(targetArray);
+	const startAt = parseInt(startIndex) ? parseInt(startIndex) : 0;
+	const stopAt = parseInt(stopIndex) ? parseInt(stopIndex) : targetArray.length - 1;
+	for (let i=startAt; i<=stopAt; i++) {
+		result[i] = fillValue;
+	}
+	return result;
+}
+
+export { at, concat, entries, every, fill };
