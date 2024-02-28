@@ -150,4 +150,9 @@ function findLastIndex(targetArray, finderFunction) {
 	return -1;
 }
 
-export { at, concat, entries, every, fill, filter, find, findIndex, findLast, findLastIndex };
+function flat() {
+	const result = [];
+	return result;
+}
+
+export { at, concat, entries, every, fill, filter, find, findIndex, findLast, findLastIndex, flat };
